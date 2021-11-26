@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@drawable/pattern"
+    android:orientation="vertical"
+    android:gravity="center_vertical">
+
+
+    <EditText
+        android:id="@+id/emaillogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="email"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+     />
+
+    <EditText
+        android:id="@+id/passwordlogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="password"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+      />
+
+
+    <Button
+        android:id="@+id/loginbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="Login"
+        android:textColor="@color/black"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+      />
+
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Don't Have Account?\n Register Now!"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:clickable="true"
+        android:layout_marginBottom="100dp"
+        />
+
+
+
+
+</LinearLayout>
