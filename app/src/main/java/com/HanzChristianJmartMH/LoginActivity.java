@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.HanzChristianJmartMH.model.Account;
 import com.HanzChristianJmartMH.request.LoginRequest;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
@@ -21,7 +22,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONObject;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Response.Listener<String>,Response.ErrorListener {
     private static final Gson gson = new Gson();
     private static Account loggedAccount = null;
     private EditText passwordLogin;
@@ -64,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    @Override
     public void onResponse(String response) {
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
         try{
@@ -77,6 +79,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(i);
     }
 
+    @Override
     public void onErrorResponse(VolleyError error) {
         Toast.makeText(this, "Login Failed!", Toast.LENGTH_LONG).show();
     }
