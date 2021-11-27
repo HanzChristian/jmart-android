@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwordLogin = findViewById(R.id.passwordlogin);
         emailLogin = findViewById(R.id.emaillogin);
         btnLogin = findViewById(R.id.loginbutton);
-        btnRegister = findViewById(R.id.registerbutton);
+        btnRegister = findViewById(R.id.register);
 
         btnLogin.setOnClickListener(this);
         btnRegister.setOnClickListener(this);
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             RequestQueue queue = Volley.newRequestQueue(this);
             queue.add(req);
         }
-        else if(view.getId()==R.id.registerbutton){
+        else if(view.getId()==R.id.register){
              Intent i = new Intent(this,RegisterActivity.class);
              startActivity(i);
         }
