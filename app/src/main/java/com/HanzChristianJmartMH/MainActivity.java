@@ -15,6 +15,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         TextView tv = findViewById(R.id.title);
         Account account = LoginActivity.getLoggedAccount();
-        tv.setText(account.name);
+        tv.setText("Hello, " + account.name + " !");
     }
 }

@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Response.ErrorListener errorListener = new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(RegisterActivity.this, "Register Failed!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Register Failed...", Toast.LENGTH_SHORT).show();
                     }
                 };
                 String name = nameRegister.getText().toString();

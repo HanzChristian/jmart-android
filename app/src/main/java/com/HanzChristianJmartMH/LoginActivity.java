@@ -70,17 +70,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
         try{
             JSONObject jsonObject = new JSONObject(response);
-            i.putExtra("id", jsonObject.getInt("id"));
+            loggedAccount = gson.fromJson(jsonObject.toString(), Account.class);
         }catch (Exception e){
             Toast.makeText(this, "Login Failed!", Toast.LENGTH_LONG).show();
             return;
         }
         Toast.makeText(this, "Login Success!", Toast.LENGTH_LONG).show();
         startActivity(i);
+
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Toast.makeText(this, "Login Failed!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Login Failed...", Toast.LENGTH_LONG).show();
     }
 }
