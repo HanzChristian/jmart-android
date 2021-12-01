@@ -16,4 +16,10 @@
     <string name="new">New</string>
     <string name="new">New</string>
     <string name="product_category">Product Category</string>
+    <string name="account_details">Account Details</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_account_n_register_now">Don\'t Have Account?\n Register Now!</string>
+    <string name="balance">Balance</string>
+    <string name="address">Address</string>
+    <string name="phone_number">Phone Number</string>
 </resources>

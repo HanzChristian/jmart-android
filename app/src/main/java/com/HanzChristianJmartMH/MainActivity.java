@@ -2,6 +2,7 @@ package com.HanzChristianJmartMH;
 
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,21 +12,34 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.HanzChristianJmartMH.model.Account;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mTopToolbar;
+    private ViewPager viewPager;
+    private ViewPageAdapter viewPageAdapter;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView tv = findViewById(R.id.title);
+
+        viewPager = findViewById(R.id.viewpager); //refrence viewPager pada Activity
+        viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager()); //set terhadap controller yang dibuat
+        viewPager.setAdapter(viewPageAdapter); // memasukkan viewPager sesuai kondisi controller
+        viewPager.setCurrentItem(0); //mengatur posisi awal
+
+        //Untuk menampilkan antar 2 tab (products & filter)
+        tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
         Account account = LoginActivity.getLoggedAccount();
+
+        //Untuk menampilkan toolbar pada menu_main.xml
         mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mTopToolbar);
-
-//        tv.setText("Hello, " + account.name + " !");
     }
 
     @Override
