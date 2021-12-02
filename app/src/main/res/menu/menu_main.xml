@@ -15,15 +15,12 @@
         android:id="@+id/addbox"
         android:icon="@drawable/ic_baseline_add_box_24"
         android:title="Add Box"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|always"/>
 
     <item
         android:id="@+id/person"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Person"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|always"/>
-
 
 </menu>
