@@ -22,7 +22,6 @@
             android:text="@string/account_details"
             android:textSize="20dp" />
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,9 +115,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:orientation="horizontal"
-            android:weightSum="6"
-            android:layout_marginVertical="10dp">
+            android:weightSum="6">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -142,18 +141,21 @@
                 android:textColor="@android:color/black" />
 
         </LinearLayout>
+
         <Button
-            android:id="@+id/registerstore"
+            android:id="@+id/registerstore1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="REGISTER STORE"
-            android:backgroundTint="@android:color/darker_gray"
-            android:textColor="@android:color/black"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
-<!--            android:visibility="gone"-->
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:text="REGISTER STORE"
+            android:textColor="@android:color/black"
+            android:visibility="visible"/>
+
 
         <LinearLayout
+            android:id="@+id/linearlayout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
@@ -174,34 +176,35 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:hint="@string/name"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:hint="@string/name" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:hint="@string/address"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:hint="@string/address" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:hint="@string/phone_number"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:hint="@string/phone_number" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_marginBottom="20dp"
                 android:gravity="bottom"
+                android:orientation="horizontal"
                 android:weightSum="2">
 
                 <Button
+                    android:id="@+id/registerstore2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -212,6 +215,7 @@
                     android:textColor="@android:color/black" />
 
                 <Button
+                    android:id="@+id/cancelregister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -225,6 +229,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearlayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"

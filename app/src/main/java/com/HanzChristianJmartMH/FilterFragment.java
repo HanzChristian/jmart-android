@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,6 +17,9 @@ import android.view.ViewGroup;
  */
 public class FilterFragment extends Fragment {
 
+    private String[] productCategory = {"BOOK", "KITCHEN", "ELECTRONIC", "FASHION", "GAMING", "GADGET", "MOTHERCARE",
+            "COSMETICS", "HEALTHCARE", "FURNITURE", "JEWELRY", "TOYS", "FNB", "STATIONERY", "SPORTS", "AUTOMOTIVE",
+            "PETCARE", "ART_CRAFT", "CARPENTRY", "MISCELLANEOUS", "PROPERTY", "TRAVEL", "WEDDING"};
 
     public FilterFragment() {
         // Required empty public constructor
@@ -23,6 +28,7 @@ public class FilterFragment extends Fragment {
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
+     *
      * @return A new instance of fragment FilterFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -33,10 +39,20 @@ public class FilterFragment extends Fragment {
         return fragment;
     }
 
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_filter, container, false);
+        View view = inflater.inflate(R.layout.fragment_filter, container, false);
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinnerproduct);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, productCategory);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        return view;
     }
 }

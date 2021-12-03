@@ -1,5 +1,6 @@
 package com.HanzChristianJmartMH;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
@@ -58,10 +59,14 @@ public class MainActivity extends AppCompatActivity {
         }
         else if ( id == R.id.addbox){
             Toast.makeText(MainActivity.this, "Add Box Clicked", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(MainActivity.this,CreateProductActivity.class);
+            startActivity(i);
             return true;
         }
         else if (id == R.id.person){
             Toast.makeText(MainActivity.this, "Person Clicked", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(MainActivity.this,AboutMeActivity.class);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);
