@@ -1,5 +1,6 @@
 package com.HanzChristianJmartMH;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPageAdapter viewPageAdapter;
     private TabLayout tabLayout;
 
+    Account account = LoginActivity.getLoggedAccount();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        Account account = LoginActivity.getLoggedAccount();
 
         //Untuk menampilkan toolbar pada menu_main.xml
         mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -46,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem addMenu = menu.findItem(R.id.search);
+        if(account.store == null){
+            addMenu.setVisible(false);
+        }
         return true;
     }
 

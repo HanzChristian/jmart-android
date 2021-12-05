@@ -27,6 +27,7 @@
             android:textSize="20dp" />
 
         <EditText
+            android:id="@+id/editNameProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -35,6 +36,7 @@
             android:hint="@string/name" />
 
         <EditText
+            android:id="@+id/editWeightProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -43,6 +45,7 @@
             android:hint="@string/weight" />
 
         <EditText
+            android:id="@+id/editPriceProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -51,6 +54,7 @@
             android:hint="@string/price" />
 
         <EditText
+            android:id="@+id/editDiscountProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -81,6 +85,7 @@
                 android:weightSum="2">
 
                 <RadioButton
+                    android:id="@+id/radiobuttonNew"
                     style="@style/CustomCheckbox02"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -88,6 +93,7 @@
                     android:text="@string/newtext" />
 
                 <RadioButton
+                    android:id="@+id/radiobuttonUsed"
                     style="@style/CustomCheckbox02"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -156,6 +162,7 @@
         android:layout_marginTop="20dp">
 
     <Button
+        android:id="@+id/createProductButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -167,6 +174,7 @@
         android:textColor="@color/black" />
 
     <Button
+        android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"

@@ -34,12 +34,12 @@
             android:text="@string/next"/>
 
         <EditText
-            android:id="@+id/amount"
+            android:id="@+id/editPage"
             android:layout_width="80dp"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:layout_margin="10dp"/>
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/go"
@@ -50,9 +50,12 @@
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:text="@string/go"/>
-
-
-
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/listViewProduct"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>
