@@ -204,7 +204,7 @@ public class AboutMeActivity extends AppCompatActivity {
                 try {
                     JSONObject object = new JSONObject(response);
                     account = gson.fromJson(response, Account.class);
-                    tvBalance.setText("" + account.balance);
+                    tvBalance.setText(String.valueOf(account.balance));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

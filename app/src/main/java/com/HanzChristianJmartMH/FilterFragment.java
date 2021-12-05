@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 /**
@@ -49,6 +52,16 @@ public class FilterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_filter, container, false);
+
+        EditText editName = view.findViewById(R.id.name);
+        EditText lowestPrice = view.findViewById(R.id.lowestprice);
+        EditText highestPrice = view.findViewById(R.id.highestprice);
+        CheckBox checkNew = view.findViewById(R.id.checknew);
+        CheckBox checkUsed = view.findViewById(R.id.checkused);
+        Button applyButton = view.findViewById(R.id.appplybutton);
+        Button clearButton = view.findViewById(R.id.clearbutton);
+
+        //Spinner
         Spinner spinner = (Spinner) view.findViewById(R.id.spinnerproduct);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, productCategory);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
