@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
             android:text="@string/create_product"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/editNameProduct"
@@ -33,7 +34,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:hint="@string/name" />
+            android:hint="@string/name"
+            />
 
         <EditText
             android:id="@+id/editWeightProduct"
@@ -66,7 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="4">
+            android:weightSum="4"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,7 +78,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_weight="2"
                 android:text="Condition"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:textColor="@color/black"/>
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -105,49 +109,65 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="5">
+            android:layout_marginBottom="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:layout_weight="3"
-                android:text="@string/category"
-                android:textSize="15dp" />
+                android:layout_marginStart="20dp"
+                android:layout_weight="3">
 
-            <Spinner
-                android:id="@+id/spinnercategory"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="20dp"
-                android:layout_weight="2" />
+                android:layout_weight="6">
+
+                <Spinner
+                    android:id="@+id/spinnercategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="5">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:layout_weight="3"
-                android:text="@string/shipment_plan"
-                android:textSize="15dp" />
+                android:layout_marginStart="20dp"
+                android:layout_weight="3">
 
-            <Spinner
-                android:id="@+id/spinnerShipment"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ShipmentPlan"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="20dp"
-                android:layout_weight="2" />
+                android:layout_weight="6">
+
+                <Spinner
+                    android:id="@+id/spinnerShipment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

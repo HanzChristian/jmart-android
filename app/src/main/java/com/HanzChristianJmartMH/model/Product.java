@@ -1,10 +1,16 @@
 package com.HanzChristianJmartMH.model;
 
+/**
+ * Merupakan Model untuk Product
+ * @author Hanz Christian
+ * @version 16 Desember 2021
+ */
+
 public class Product extends Serializable{
     public int accountId;
-    double discount;
-    double price;
-    byte shipmentPlans;
+    public double discount;
+    public double price;
+    public byte shipmentPlans;
     public String name;
     public int weight;
     public boolean conditionUsed;

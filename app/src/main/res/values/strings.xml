@@ -62,5 +62,18 @@
     <string name="category">Category</string>
     <string name="shipment_plan">Shipment Plan</string>
     <string name="create">Create</string>
+    <string name="product_details">Product Details</string>
+    <string name="ShipmentPlan">Shipment Plan</string>
+    <string name="conditionused">Condition Used</string>
+    <string name="jumlah_pembelian">Jumlah pembelian</string>
+    <string name="cancel">Cancel</string>
+    <string name="purchase">Purchase</string>
+    <string name="total_price">Total Price</string>
+    <string name="qty">Qty</string>
+    <string name="id_number">ID #NUMBER</string>
+    <string name="order_id_nomer">Order ID #NOMER</string>
+    <string name="status">Status</string>
+    <string name="date">Date</string>
+    <string name="cost">Cost</string>
 
 </resources>

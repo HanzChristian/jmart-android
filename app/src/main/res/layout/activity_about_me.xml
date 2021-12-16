@@ -16,9 +16,10 @@
         android:orientation="vertical">
 
         <TextView
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_margin="20dp"
             android:text="@string/account_details"
             android:textSize="20dp" />
 
@@ -36,6 +37,7 @@
                 android:layout_weight="1">
 
                 <TextView
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/name"
@@ -44,6 +46,7 @@
 
             <TextView
                 android:id="@+id/name"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
@@ -67,6 +70,7 @@
                 android:layout_weight="1">
 
                 <TextView
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/email"
@@ -75,6 +79,7 @@
 
             <TextView
                 android:id="@+id/emaillogin"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
@@ -96,6 +101,7 @@
                 android:layout_weight="1">
 
                 <TextView
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/balance"
@@ -104,6 +110,7 @@
 
             <TextView
                 android:id="@+id/balance"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
@@ -153,7 +160,7 @@
             android:backgroundTint="@android:color/darker_gray"
             android:text="REGISTER STORE"
             android:textColor="@android:color/black"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
 
         <LinearLayout
@@ -171,6 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:text="Register Store"
+                android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <EditText
@@ -236,18 +244,19 @@
         <LinearLayout
             android:id="@+id/linearlayout2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:background="@drawable/shaping"
+            android:layout_height="wrap_content"
+
             android:elevation="10dp"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:text="Store"
+                android:textColor="@color/black"
                 android:textSize="20dp" />
 
             <LinearLayout
@@ -266,6 +275,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:text="@string/name"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -275,6 +285,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
                     android:layout_weight="3"
                     android:gravity="right"/>
             </LinearLayout>
@@ -295,6 +306,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:text="@string/address"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -304,6 +316,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
                     android:layout_weight="3"
                     android:gravity="right"/>
             </LinearLayout>
@@ -325,6 +338,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/phone_number"
+                        android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
 
@@ -334,11 +348,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
                     android:layout_weight="3"
+                    android:textColor="@color/black"
                     android:gravity="right"/>
             </LinearLayout>
 
+            <Button
+                android:id="@+id/invoicebutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="INVOICE"
+                android:textColor="@color/black"
+                android:backgroundTint="@android:color/darker_gray"
+                />
 
         </LinearLayout>
+
 
     </LinearLayout>
 </LinearLayout>

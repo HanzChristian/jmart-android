@@ -1,5 +1,11 @@
 package com.HanzChristianJmartMH.model;
 
+/**
+ * Merupakan Model untuk ProductCategory
+ * @author Hanz Christian
+ * @version 16 Desember 2021
+ */
+
 public enum ProductCategory {
     BOOK,
     KITCHEN,

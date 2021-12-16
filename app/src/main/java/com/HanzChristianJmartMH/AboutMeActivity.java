@@ -2,6 +2,7 @@ package com.HanzChristianJmartMH;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,9 +34,10 @@ public class AboutMeActivity extends AppCompatActivity {
     private Button registerbutton;
     private Button cancelbutton;
     private Button topupbutton;
+    private Button invoicebutton;
     private TextView tvName, tvEmail, tvBalance, tvStoreName, tvStoreAddress, tvStorePhoneNumber;
     private EditText editTopup, editName, editAddress, editPhoneNumber;
-    private Account account;
+    private Account account = LoginActivity.getLoggedAccount();
     private LinearLayout linearLayout1;
     private LinearLayout linearLayout2;
     private static final Gson gson = new Gson();
@@ -43,14 +45,18 @@ public class AboutMeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //untuk refresh balance (karena habis beli product)
+        takeBalance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
+
 
         //Button
         topupbutton = findViewById(R.id.topup);
         registerstorebutton = findViewById(R.id.registerstore1);
         registerbutton = findViewById(R.id.registerstore2);
         cancelbutton = findViewById(R.id.cancelregister);
+        invoicebutton = findViewById(R.id.invoicebutton);
 
         //TextView
         tvName = findViewById(R.id.name);
@@ -67,7 +73,6 @@ public class AboutMeActivity extends AppCompatActivity {
         editPhoneNumber = findViewById(R.id.storephonenumber);
 
         //Penampilan data Account
-        account = LoginActivity.getLoggedAccount();
         tvName.setText(account.name);
         tvEmail.setText(account.email);
         tvBalance.setText("" + account.balance);
@@ -106,7 +111,7 @@ public class AboutMeActivity extends AppCompatActivity {
                         if (object) {
                             Toast.makeText(AboutMeActivity.this, "Top Up Success!", Toast.LENGTH_SHORT).show();
                             takeBalance();
-                            editTopup.getText().clear();
+//                            editTopup.getText().clear();
                         } else {
                             Toast.makeText(AboutMeActivity.this, "Top Up Failed!", Toast.LENGTH_SHORT).show();
                         }
@@ -137,6 +142,7 @@ public class AboutMeActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Register Store di click",Toast.LENGTH_SHORT).show();
             }
         });
+
 
         //Apabila register button di click
         registerbutton.setOnClickListener(new View.OnClickListener() {
@@ -191,9 +197,20 @@ public class AboutMeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 linearLayout1.setVisibility(v.GONE);
                 registerstorebutton.setVisibility(v.VISIBLE);
-                Toast.makeText(getApplicationContext(), "Cancel di click", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Cancel clicked", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //Apabila invoice button di click
+        invoicebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AboutMeActivity.this,invoiceActivity.class);
+                Toast.makeText(getApplicationContext(), "Invoice Button clicked", Toast.LENGTH_SHORT).show();
+                startActivity(i);
+            }
+        });
+
     }
 
     public void takeBalance() {
@@ -220,4 +237,5 @@ public class AboutMeActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(AboutMeActivity.this);
         queue.add(RequestFactory.getById("account", account.id, listener, errorListener));
     }
+
 }
