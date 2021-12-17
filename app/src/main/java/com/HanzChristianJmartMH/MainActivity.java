@@ -55,8 +55,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
+/**
+ * Merupakan Class yang merepresentasikan Activity Main
+ * Merupakan layout utamanya
+ * @author Hanz Christian
+ * @version 16 Desember 2021
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -97,12 +101,16 @@ public class MainActivity extends AppCompatActivity {
     private Payment payment;
 
 
-
-
     Account account = LoginActivity.getLoggedAccount();
 
+    /**
+     * Merupakan method yang digunakan untuk melakukan inisialisasi
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        takeBalance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -115,6 +123,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Dialog for product_detail
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             * Merupakan method yang digunakan untuk dialog pada product detailnya, ketika salah satu list Product di klik
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final Dialog dialog = new Dialog(MainActivity.this);
@@ -135,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
                 final EditText productdetailsQuantity = dialog.findViewById(R.id.productdetailsQuantity);
                 final EditText productdetailsAddress = dialog.findViewById(R.id.productdetailsAddress);
 
+                final LinearLayout layoutTotalPrice = dialog.findViewById(R.id.layoutTotalPrice);
+
                 buynowbtn = dialog.findViewById(R.id.productdetailsBuyNow);
                 linearlayoutBuyNow = dialog.findViewById(R.id.linearlayoutBuyNow);
                 cancelbtn = dialog.findViewById(R.id.productdetailsCancel);
@@ -144,20 +161,20 @@ public class MainActivity extends AppCompatActivity {
                 //Button Buy Now pada product detail
                 buynowbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v){
+                    public void onClick(View v) {
                         buynowbtn.setVisibility(v.GONE);
                         linearlayoutBuyNow.setVisibility(v.VISIBLE);
-                        Toast.makeText(getApplicationContext(),"Buy Now clicked",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Buy Now clicked", Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 //Cancel button di click
                 cancelbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v){
+                    public void onClick(View v) {
                         buynowbtn.setVisibility(v.VISIBLE);
                         linearlayoutBuyNow.setVisibility(v.GONE);
-                        Toast.makeText(getApplicationContext(),"Cancel Clicked",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Cancel Clicked", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -176,10 +193,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                         if (!isEmptyFields) {
                             double totalprice = Double.valueOf(productdetailsTotalPrice.getText().toString().substring(3));
-                            if(account.balance < totalprice){
-                                Toast.makeText(MainActivity.this,"Your balance is too low!",Toast.LENGTH_SHORT).show();
-                            }
-                            else if(account.balance >= totalprice){
+                            if (account.balance < totalprice) {
+                                Toast.makeText(MainActivity.this, "Your balance is too low!", Toast.LENGTH_SHORT).show();
+                            } else if (account.balance >= totalprice) {
                                 Response.Listener<String> listenerCreatePayment = new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
@@ -188,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
                                             object = new JSONObject(response);
                                             if (object != null) {
                                                 Toast.makeText(MainActivity.this, "Payment Completed!", Toast.LENGTH_SHORT).show();
-                                                takeBalance();
                                                 dialog.dismiss();
                                             }
                                             payment = gson.fromJson(response, Payment.class);
@@ -205,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                                         Log.d("ERROR", error.toString());
                                     }
                                 };
-                                PaymentRequest createPaymentRequest = new PaymentRequest(account.id, product.id, Integer.parseInt(productdetailsQuantity.getText().toString()), productdetailsAddress.getText().toString(), product.shipmentPlans, product.accountId, listenerCreatePayment, errorListenerCreatePayment);
+                                PaymentRequest createPaymentRequest = new PaymentRequest(account.id, product.id, Integer.parseInt(productdetailsQuantity.getText().toString()), productdetailsAddress.getText().toString(), product.shipmentPlans, product.accountId, product.discount, listenerCreatePayment, errorListenerCreatePayment);
                                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
                                 queue.add(createPaymentRequest);
                             }
@@ -220,17 +235,24 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
+                    /**
+                     * Merupakan method yang terjadi ketika adanya perubahan pada quantity
+                     * @param s
+                     * @param start
+                     * @param before
+                     * @param count
+                     */
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if(productdetailsQuantity.getText().toString().equals("")){
+                        if (productdetailsQuantity.getText().toString().equals("")) {
 
-                        }
-                        else{
-                            if(product.discount == 0){
+                        } else {
+                            layoutTotalPrice.setVisibility(View.VISIBLE);
+                            if (product.discount == 0) {
                                 productdetailsTotalPrice.setText("Rp. " + ((product.price * Integer.valueOf(productdetailsQuantity.getText().toString()))));
                             }
-                            discount = product.price * (product.discount/(100));
-                            productdetailsTotalPrice.setText("Rp. " + ((product.price - discount)* Integer.valueOf(productdetailsQuantity.getText().toString())));
+                            discount = product.price * (product.discount / (100));
+                            productdetailsTotalPrice.setText("Rp. " + ((product.price - discount) * Integer.valueOf(productdetailsQuantity.getText().toString())));
                         }
                     }
 
@@ -276,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        GetshowProductList(0,3);
+        GetshowProductList(0, 3);
 
 
         //Button pada Product
@@ -288,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
                 if (SignFilter) {
                     GetshowFilterProductList(page, 3);
                 } else {
-                    GetshowProductList(page,3);
+                    GetshowProductList(page, 3);
                 }
             }
         });
@@ -303,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
                     if (SignFilter) {
                         GetshowFilterProductList(page, 3);
                     } else {
-                        GetshowProductList(page,3);
+                        GetshowProductList(page, 3);
                     }
                 }
             }
@@ -316,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
                 if (SignFilter) {
                     GetshowFilterProductList(page, 3);
                 } else {
-                    GetshowProductList(page,3);
+                    GetshowProductList(page, 3);
                 }
             }
         });
@@ -329,9 +351,9 @@ public class MainActivity extends AppCompatActivity {
         //Filter
         editName = findViewById(R.id.name);
         lowestPrice = findViewById(R.id.lowestprice);
-         highestPrice = findViewById(R.id.highestprice);
-         checkNew = findViewById(R.id.checknew);
-         checkUsed = findViewById(R.id.checkused);
+        highestPrice = findViewById(R.id.highestprice);
+        checkNew = findViewById(R.id.checknew);
+        checkUsed = findViewById(R.id.checkused);
         applyButton = findViewById(R.id.appplybutton);
         clearButton = findViewById(R.id.clearbutton);
 
@@ -350,7 +372,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 page = 0;
-                GetshowProductList(page,3);
+                GetshowProductList(page, 3);
                 SignFilter = false;
                 edtfilterproduct.setText("" + 1);
                 Toast.makeText(MainActivity.this, "Filter Cleared!", Toast.LENGTH_SHORT).show();
@@ -371,6 +393,10 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            /**
+             * Merupakan method yang mengatur tab selection antara product dengan filter
+             * @param tab
+             */
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
@@ -399,31 +425,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //mengambil balance ketika sudah membayar
-    public void takeBalance(){
-        //Ketika menerima response
-        Response.Listener<String> listener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    account = gson.fromJson(response, Account.class);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        //Ketika tidak menerima response
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
-        };
-        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-        queue.add(RequestFactory.getById("account", account.id, listener, errorListener));
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -435,6 +436,12 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Merupakan method yang digunakan ketika salah satu Option Item diclick (Search,Addbox,atau Person)
+     *
+     * @param item
+     * @return berupa boolean true sesuai dengan kondisi id yang diclick
+     */
     //Toolbar dipencet
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -457,8 +464,14 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Merupakan method yang digunakan untuk mengambil list Product yang ada
+     *
+     * @param pageBefore
+     * @param pageSize
+     */
     //Method untuk mengambil product listnya sesuai page dan pageSize
-    public void GetshowProductList(int pageBefore,int pageSize) {
+    public void GetshowProductList(int pageBefore, int pageSize) {
         Response.Listener<String> stringListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -468,11 +481,10 @@ public class MainActivity extends AppCompatActivity {
                     Type productlistType = new TypeToken<ArrayList<Product>>() {
                     }.getType();
                     PList = gson.fromJson(response, productlistType);
-                    if(PList.isEmpty()){
+                    if (PList.isEmpty()) {
                         Toast.makeText(MainActivity.this, "Error! The page you are looking for is empty!", Toast.LENGTH_SHORT).show();
                         page--;
-                    }
-                    else{
+                    } else {
                         List<String> productnameList = new ArrayList<>();
                         for (Product product : PList) {
                             productnameList.add(product.name);
@@ -489,15 +501,21 @@ public class MainActivity extends AppCompatActivity {
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Error! The page you are looking for is empty!", Toast.LENGTH_SHORT).show();
+                page--;
             }
         };
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         queue.add(RequestFactory.getPage("product", pageBefore, pageSize, stringListener, errorListener));
     }
 
-
-    public void GetshowFilterProductList(int page, int pageSize) {
+    /**
+     * Merupakan method yang digunakan untuk mengambil list Product yang sudah difilter
+     *
+     * @param pageBefore
+     * @param pageSize
+     */
+    public void GetshowFilterProductList(int pageBefore, int pageSize) {
         String filteredname = editName.getText().toString();
         Integer minP;
         Integer maxP;
@@ -526,16 +544,16 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     PList.clear();
                     JSONArray jsonArray = new JSONArray(response);
-                    Type PListType = new TypeToken<ArrayList<Product>>(){}.getType();
+                    Type PListType = new TypeToken<ArrayList<Product>>() {
+                    }.getType();
                     PList = gson.fromJson(response, PListType);
-                    if(!PList.isEmpty()){
-                        List<String> productnameList = new ArrayList<>();
-                        for (Product product : PList) {
-                            productnameList.add(product.name);
-                        }
-                        ArrayAdapter adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.productlist, productnameList);
-                        listView.setAdapter(adapter);
+                    List<String> productnameList = new ArrayList<>();
+                    for (Product product : PList) {
+                        productnameList.add(product.name);
                     }
+                    ArrayAdapter adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.productlist, productnameList);
+                    listView.setAdapter(adapter);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -545,6 +563,7 @@ public class MainActivity extends AppCompatActivity {
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                page--;
                 Toast.makeText(MainActivity.this, "Error! Already in the last filter!", Toast.LENGTH_SHORT).show();
             }
         };
@@ -562,16 +581,34 @@ public class MainActivity extends AppCompatActivity {
         queue.add(filterRequest);
     }
 
-
-    public ProductCategory getProductCategory(Spinner spinner){
+    /**
+     * Merupakan method yang digunakan untuk mendapatkan category setiap Productnya
+     *
+     * @param spinner spinner yang merepresentasikan category
+     */
+    public ProductCategory getProductCategory(Spinner spinner) {
         ProductCategory category = ProductCategory.BOOK;
         String productCategory = spinner.getSelectedItem().toString();
-        for(ProductCategory pc : ProductCategory.values()){
-            if(pc.toString().equals(productCategory)){
+        for (ProductCategory pc : ProductCategory.values()) {
+            if (pc.toString().equals(productCategory)) {
                 category = pc;
             }
         }
         return category;
     }
 
+    public void takeBalance() {
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    account = gson.fromJson(response, Account.class);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+    }
 }

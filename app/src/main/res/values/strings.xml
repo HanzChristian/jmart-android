@@ -75,5 +75,6 @@
     <string name="status">Status</string>
     <string name="date">Date</string>
     <string name="cost">Cost</string>
+    <string name="accept">Accept</string>
 
 </resources>

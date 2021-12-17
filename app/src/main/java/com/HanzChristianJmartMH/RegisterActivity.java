@@ -17,8 +17,17 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Merupakan Class yang merepresentasikan Activity Register
+ * @author Hanz Christian
+ * @version 16 Desember 2021
+ */
 public class RegisterActivity extends AppCompatActivity {
 
+    /**
+     * Merupakan method yang digunakan untuk melakukan inisialisasi
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +39,17 @@ public class RegisterActivity extends AppCompatActivity {
         Button btnRegister = findViewById(R.id.registerbutton);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Merupakan method yang digunakan ketika button register di click
+             * @param v berupa view
+             */
             @Override
             public void onClick(View v) {
                 Response.Listener<String> listener = new Response.Listener<String>() {
+                    /**
+                     * Merupakan method yang terjadi ketika backend berhasil memberikan response
+                     * @param response
+                     */
                     @Override
                     public void onResponse(String response) {
                         try {
@@ -48,6 +65,10 @@ public class RegisterActivity extends AppCompatActivity {
                 };
 
                 Response.ErrorListener errorListener = new Response.ErrorListener() {
+                    /**
+                     * Merupakan method yang terjadi ketika backend gagal memberikan response
+                     * @param error
+                     */
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(RegisterActivity.this, "Register Failed...", Toast.LENGTH_SHORT).show();

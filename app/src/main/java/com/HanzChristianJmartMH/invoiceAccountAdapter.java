@@ -7,11 +7,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.HanzChristianJmartMH.model.Account;
-import com.HanzChristianJmartMH.model.Invoice;
 import com.HanzChristianJmartMH.model.Payment;
 import com.HanzChristianJmartMH.model.Product;
 import com.HanzChristianJmartMH.request.RequestFactory;
@@ -25,28 +22,46 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class invoiceAdapter extends RecyclerView.Adapter<invoiceAdapter.CardViewHolder> {
+/**
+ * Merupakan Class yang merepresentasikan Adapter untuk invoice Account
+ * @author Hanz Christian
+ * @version 16 Desember 2021
+ */
+public class invoiceAccountAdapter extends RecyclerView.Adapter<invoiceAccountAdapter.CardViewAccountHolder> {
     private ArrayList<Payment> listP = new ArrayList<>();
     private Product product;
     private static final Gson gson = new Gson();
     double discount;
 
-    public invoiceAdapter(ArrayList<Payment> list){
+    /**
+     * Merupakan method yang digunakan untuk mendapatkan list paymentnya
+     * @param list
+     */
+    public invoiceAccountAdapter(ArrayList<Payment> list){
         this.listP = list;
     }
 
-
+    /**
+     * Merupakan method yang digunakan untuk merepresentasikan layout adapter yang dipakai yaitu invoice_detail
+     * @param parent
+     * @param viewType
+     * @return berypa Holder untuk Cardview Account
+     */
     @NonNull
     @Override
-    public invoiceAdapter.CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public invoiceAccountAdapter.CardViewAccountHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.invoice_detail, parent, false);
-        return new CardViewHolder(view);
+        return new CardViewAccountHolder(view);
     }
 
+    /**
+     * Merupakan method yang digunakan untuk mengatur tiap Holdernya
+     * @param holder
+     * @param position
+     */
     @Override
-    public void onBindViewHolder(@NonNull invoiceAdapter.CardViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull invoiceAccountAdapter.CardViewAccountHolder holder, int position) {
         Payment payment = listP.get(position);
         Payment.Record lastRec = payment.history.get(payment.history.size() - 1);
         getProductData(holder, payment);
@@ -61,9 +76,19 @@ public class invoiceAdapter extends RecyclerView.Adapter<invoiceAdapter.CardView
         return listP.size();
     }
 
-    public class CardViewHolder extends RecyclerView.ViewHolder {
+    /**
+     * Merupakan class yang digunakan untuk Holder pada Account
+     * @author Hanz Christian
+     * @version 16 Desember 2021
+     */
+    public class CardViewAccountHolder extends RecyclerView.ViewHolder {
         TextView invoiceName, invoiceStatus, invoiceDate, invoiceAddress, invoiceCost,invoiceOrderId;
-        public CardViewHolder(@NonNull View itemView) {
+
+        /**
+         * Merupakan method yang digunakan untuk inisiasi setiap parameter berdasarkan id di xml
+         * @param itemView
+         */
+        public CardViewAccountHolder(@NonNull View itemView) {
             super(itemView);
             invoiceName = itemView.findViewById(R.id.invoiceName);
             invoiceStatus = itemView.findViewById(R.id.invoiceStatus);
@@ -75,7 +100,12 @@ public class invoiceAdapter extends RecyclerView.Adapter<invoiceAdapter.CardView
         }
     }
 
-    public void getProductData (invoiceAdapter.CardViewHolder holder, Payment payment){
+    /**
+     * Merupakan method yang digunakan untuk mendapatkan data product yang sudah dibayar
+     * @param holder
+     * @param payment
+     */
+    public void getProductData (invoiceAccountAdapter.CardViewAccountHolder holder, Payment payment){
         Response.Listener<String> ListenerProduct = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

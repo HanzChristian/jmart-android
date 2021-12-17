@@ -29,7 +29,14 @@
         android:id="@+id/recyclerviewAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/invoice_detail"/>
+        tools:listitem="@layout/invoice_detail"
+        android:visibility="visible"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewStore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/storeinvoice_detail"
+        android:visibility="gone"/>
 
 </LinearLayout>

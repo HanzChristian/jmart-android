@@ -31,7 +31,7 @@ public class PaymentRequest extends StringRequest {
      * @param listener merupakan listener yang menandakan bahwa hubungan ke backend berhasil
      * @param errorListener merupakan errorlistener yang menandakan koneksi ke backend gagal
      */
-    public PaymentRequest(int buyerId, int productId, int productCount, String shipmentAddress, byte shipmentPlan, int storeId, Response.Listener<String> listener, Response.ErrorListener errorListener) {
+    public PaymentRequest(int buyerId, int productId, int productCount, String shipmentAddress, byte shipmentPlan, int storeId, double discount,Response.Listener<String> listener, Response.ErrorListener errorListener) {
         super(Method.POST, URL_FORMAT, listener, errorListener);
         params = new HashMap<>();
         params.put("buyerId", String.valueOf(buyerId));
@@ -40,6 +40,7 @@ public class PaymentRequest extends StringRequest {
         params.put("shipmentAddress", shipmentAddress);
         params.put("shipmentPlan", String.valueOf(shipmentPlan));
         params.put("storeId", String.valueOf(storeId));
+        params.put("discount",String.valueOf(discount));
     }
 
     /**

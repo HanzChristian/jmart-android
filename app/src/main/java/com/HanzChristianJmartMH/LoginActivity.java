@@ -21,7 +21,11 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
-
+/**
+ * Merupakan Class yang merepresentasikan Activity Login
+ * @author Hanz Christian
+ * @version 16 Desember 2021
+ */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Response.Listener<String>,Response.ErrorListener {
     private static final Gson gson = new Gson();
     private static Account loggedAccount = null;
@@ -30,11 +34,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btnLogin;
     private TextView btnRegister;
 
-
+    /**
+     * Method yang digunakan untuk mendapatkan object Account
+     * @return object Account
+     */
     public static Account getLoggedAccount(){
         return loggedAccount;
     }
 
+    /**
+     * Merupakan method yang digunakan untuk melakukan inisialisasi
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +60,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnRegister.setOnClickListener(this);
     }
 
+    /**
+     * Merupakan method yang digunakan ketika button di click dan memberikan request
+     * @param view
+     */
     @Override
     public void onClick(View view){
         if(view.getId()==R.id.loginbutton){
@@ -65,6 +80,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * Merupakan method yang digunakan ketika mendapatkan response dari backendnya
+     */
     @Override
     public void onResponse(String response) {
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
@@ -80,6 +98,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    /**
+     * Merupakan method yang digunakan ketika gagal mendapatkan response dari backendnya
+     */
     @Override
     public void onErrorResponse(VolleyError error) {
         Toast.makeText(this, "Login Failed...", Toast.LENGTH_LONG).show();

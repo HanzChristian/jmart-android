@@ -32,6 +32,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Merupakan Class yang merepresentasikan Activity untuk pembentukan product
+ * @author Hanz Christian
+ * @version 16 Desember 2021
+ */
 public class CreateProductActivity extends AppCompatActivity {
 
     private EditText editNameProduct,editWeightProduct,editPriceProduct,editDiscountProduct;
@@ -42,6 +47,10 @@ public class CreateProductActivity extends AppCompatActivity {
     private static final Gson gson = new Gson();
 
 
+    /**
+     * Merupakan method yang digunakan untuk melakukan inisialisasi
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,6 +145,10 @@ public class CreateProductActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Merupakan method yang digunakan untuk melakukan pengecekkan kondisi boolean radiobutton
+     * @return berupa boolean true jika new, dan false jika used
+     */
     //Pengecekkan Button
     public boolean checkButton(RadioButton radiobuttonNew, RadioButton radiobuttonUsed){
         boolean isUsed = false;
@@ -148,6 +161,11 @@ public class CreateProductActivity extends AppCompatActivity {
         return isUsed;
     }
 
+    /**
+     * Merupakan method yang digunakan untuk mengambil keseluruhan list dari product category yang ada pada array
+     * @param categorySpinner merupakan spinner untuk memilih kategorinya
+     * @return list product category
+     */
     //Mengambil data product category dengan perbandingan
     public ProductCategory getProductCategory(Spinner categorySpinner){
         //inisiasi awal
@@ -161,6 +179,11 @@ public class CreateProductActivity extends AppCompatActivity {
         return category;
     }
 
+    /**
+     * Merupakan method yang digunakan untuk mengambil keseluruhan list dari product shipment
+     * @param shipmentSpinner merupakan spinner untuk memilih Shipment
+     * @return list Shipment dalam bentuk byte
+     */
     public byte getShipmentPlan(Spinner shipmentSpinner){
         String shipmentPlan = shipmentSpinner.getSelectedItem().toString();
         if(shipmentPlan.equals("INSTANT")){

@@ -28,6 +28,11 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Merupakan Class yang merepresentasikan Activity Detail Account dan Storenya, beserta function invoice
+ * @author Hanz Christian
+ * @version 16 Desember 2021
+ */
 public class AboutMeActivity extends AppCompatActivity {
 
     private Button registerstorebutton;
@@ -42,10 +47,13 @@ public class AboutMeActivity extends AppCompatActivity {
     private LinearLayout linearLayout2;
     private static final Gson gson = new Gson();
 
-
+    /**
+     * Merupakan method yang digunakan untuk melakukan inisialisasi
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //untuk refresh balance (karena habis beli product)
+        //untuk refresh balance (karena habis beli product,gagal payment)
         takeBalance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
@@ -169,10 +177,8 @@ public class AboutMeActivity extends AppCompatActivity {
                             linearLayout2.setVisibility(v.VISIBLE);
                             Toast.makeText(getApplicationContext(), "Register Store di click", Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
-                            Log.d("RESPONSE 1", response);
                             Toast.makeText(AboutMeActivity.this, "Register Store Failed!", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
-                            Log.d("Respons 2", response);
                         }
                     }
                 };
@@ -213,6 +219,9 @@ public class AboutMeActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Merupakan method yang digunakan untuk melakukan refresh/update balance
+     */
     public void takeBalance() {
         //Ketika menerima response
         Response.Listener<String> listener = new Response.Listener<String>() {
@@ -238,4 +247,12 @@ public class AboutMeActivity extends AppCompatActivity {
         queue.add(RequestFactory.getById("account", account.id, listener, errorListener));
     }
 
+    /**
+     * Merupakan method yang digunakan untuk update balance ketika berbeda layout
+     */
+    @Override
+    protected void onResume() {
+        takeBalance();
+        super.onResume();
+    }
 }
