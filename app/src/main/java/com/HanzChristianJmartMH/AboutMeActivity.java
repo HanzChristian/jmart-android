@@ -151,7 +151,6 @@ public class AboutMeActivity extends AppCompatActivity {
             }
         });
 
-
         //Apabila register button di click
         registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,6 +224,9 @@ public class AboutMeActivity extends AppCompatActivity {
     public void takeBalance() {
         //Ketika menerima response
         Response.Listener<String> listener = new Response.Listener<String>() {
+            /**
+             * Merupakan method yang mendapatkan response dari backend
+             */
             @Override
             public void onResponse(String response) {
                 try {
@@ -236,6 +238,9 @@ public class AboutMeActivity extends AppCompatActivity {
                 }
             }
         };
+        /**
+         * Merupakan method yang gagal mendapatkan response dari backend
+         */
         //Ketika tidak menerima response
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override

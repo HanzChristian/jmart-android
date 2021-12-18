@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 page = Integer.valueOf(edtfilterproduct.getText().toString());
-                page--;
+                page--; //menandakan index yang +1 pada sebelumnya
                 if (SignFilter) {
                     GetshowFilterProductList(page, 3);
                 } else {
@@ -597,6 +597,9 @@ public class MainActivity extends AppCompatActivity {
         return category;
     }
 
+    /**
+     * Method yang digunakan untuk melakukan refresh terhadap perubahan pada seluruh parameter di account.class
+     */
     public void takeBalance() {
         Response.Listener<String> listener = new Response.Listener<String>() {
             @Override

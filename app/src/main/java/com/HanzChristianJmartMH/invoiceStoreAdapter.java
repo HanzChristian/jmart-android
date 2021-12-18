@@ -104,9 +104,17 @@ public class invoiceStoreAdapter extends RecyclerView.Adapter<invoiceStoreAdapte
 
 
         holder.acceptButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Merupakan method yang mengubah status invoice setelah payment di accept
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 Response.Listener<String> listenerAcceptPayment = new Response.Listener<String>() {
+                    /**
+                     * Merupakan method yang mendapatkan response dari backend
+                     * @param response
+                     */
                     @Override
                     public void onResponse(String response) {
                         Boolean isAccepted = Boolean.valueOf(response);
@@ -123,7 +131,11 @@ public class invoiceStoreAdapter extends RecyclerView.Adapter<invoiceStoreAdapte
                     }
                 };
 
-                Response.ErrorListener errorListenerAcceptPayment = new Response.ErrorListener() {      //errorListener jika tidak terkoneksi ke backend
+                Response.ErrorListener errorListenerAcceptPayment = new Response.ErrorListener() {
+                    /**
+                     * Merupakan method yang gagal mendapatkan response dari backend
+                     * @param error
+                     */
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(holder.invoiceStoreName.getContext(), "ERROR", Toast.LENGTH_SHORT).show();
@@ -233,6 +245,10 @@ public class invoiceStoreAdapter extends RecyclerView.Adapter<invoiceStoreAdapte
 
     }
 
+    /**
+     * Merupakan method yang digunakan untuk mendapatkan banyaknya product list yang ada
+     * @return size dari product listnya
+     */
     @Override
     public int getItemCount() {
         return listP.size();
